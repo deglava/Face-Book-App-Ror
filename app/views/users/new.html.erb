@@ -1,0 +1,57 @@
+<% @page_title = "UserAuth | Signup" %>
+
+<div id="blueBar" class="broke-endless-pages">
+  <div id="logoBanner">
+    <img src="/facebook.png", alt text="facebook logo", width="210"/>
+  </div>
+</div>
+
+
+<div id="Signup_Form">
+
+  <h1>Sign Up</h1>
+  <h2>It's free. And always will be.</h2>
+
+  <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
+      <p>
+        <%= f.text_field :f_name, :placeholder => 'First Name' %>
+        <%= f.text_field :l_name, :placeholder => 'Last Name' %>
+      </p>
+
+        </p>
+        <%= f.text_field :email, :style => "width:407px", :placeholder => 'Email' %>
+        </p>
+
+
+      </p>
+      <%= f.password_field :encrypted_password, :style => "width:407px", placeholder: 'New Password' %>
+      </p>
+
+      </p>
+       <%= f.password_field :encrypted_password, :style => "width:407px", placeholder: 'Re-enter Password' %>
+      </p>
+
+      <p>
+        <%= f.label :birthday %>
+        </br>
+        <%= f.date_select(:birthday, start_year: 1920, end_year: 2015, default: 18.years.ago, order: [:month, :day, :year]) %>
+      </p>
+      <p>
+        <%= f.radio_button :gender, 'Female' %>
+        <%= f.label :female %>
+        <%= f.radio_button :gender, 'Male' %>
+        <%= f.label :male %>
+      </p>
+      <%= f.submit :Signup %>
+  <% end %>
+
+  <% if @user.errors.any? %>
+
+      <ul class="Signup_Errors">
+        <% for message_error in @user.errors.full_messages %>
+            <li>* <%= message_error %></li>
+        <% end %>
+      </ul>
+
+  <% end %>
+</div>
